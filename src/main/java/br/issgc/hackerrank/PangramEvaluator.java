@@ -3,10 +3,10 @@
  */
 package br.issgc.hackerrank;
 
-import java.util.List;
-import java.util.stream.Collectors;
+import static org.apache.commons.lang3.StringUtils.isEmpty;
+import static org.apache.commons.lang3.StringUtils.trim;
 
-import org.apache.commons.lang3.StringUtils;
+import java.util.stream.Collectors;
 
 /**
  * Evaluates if a string is a pangram (Pangrams are sentences constructed by
@@ -20,23 +20,61 @@ import org.apache.commons.lang3.StringUtils;
  */
 public class PangramEvaluator {
 
-	private final List<Character> englishCharactersAlphabet;
+	private final int englishCharactersAlphabetSize;
 
 	private final String possiblePangram;
 
+	private String result;
+
+	/**
+	 *
+	 * @param possiblePangram
+	 *            the possible pangram to be evaluated
+	 */
 	public PangramEvaluator(String possiblePangram) {
 
 		// simple validation
-		if (!StringUtils.isEmpty(possiblePangram)) {
-
-			this.possiblePangram = possiblePangram.trim().replaceAll("\\s+", "");
+		if (!isEmpty(trim(possiblePangram))) {
+			this.possiblePangram = possiblePangram.trim().replaceAll("\\s+", "").toLowerCase();
 		} else {
 			throw new IllegalArgumentException("null or empty possible pangram to evaluate");
 		}
 
 		// create a list of characters
-		this.englishCharactersAlphabet = "abcdefghijklmnopqrstuvwxyz".chars().mapToObj(c -> (char) c)
-				.collect(Collectors.toList());
+		this.englishCharactersAlphabetSize = "abcdefghijklmnopqrstuvwxyz".chars().mapToObj(c -> (char) c)
+				.collect(Collectors.toList()).size();
+
+		this.evaluatePangram();
 	}
 
+	/**
+	 * checks if this is a pangram
+	 */
+	private void evaluatePangram() {
+
+		if (this.possiblePangram.length() < this.englishCharactersAlphabetSize) {
+			this.result = "not pangram";
+			return;
+		}
+
+		// i just thought that could be helpful to order, remove duplicates and
+		// compare to the English alphabet variable.
+		final int pangramDistinctCharsSize = this.possiblePangram.chars().mapToObj(c -> (char) c).distinct().sorted()
+				.collect(Collectors.toList()).size();
+
+		if (this.englishCharactersAlphabetSize != pangramDistinctCharsSize) {
+			this.result = "not pangram";
+		} else {
+			this.result = "pangram";
+		}
+
+	}
+
+	public String getPossiblePangram() {
+		return this.possiblePangram;
+	}
+
+	public String getResult() {
+		return this.result;
+	}
 }
