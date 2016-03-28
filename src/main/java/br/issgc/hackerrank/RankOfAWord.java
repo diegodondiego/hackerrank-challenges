@@ -4,6 +4,8 @@
 package br.issgc.hackerrank;
 
 import java.util.List;
+import java.util.Map;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 
 /**
@@ -38,8 +40,13 @@ public class RankOfAWord {
 		}
 
 		// sort the characters for eval the permutations
-		final List<Character> sortedChars = this.word.chars().mapToObj(c -> (char) c).sorted()
+		final List<Character> sortedChars = this.word.chars()
+				.mapToObj(c -> (char) c)
+				.sorted()
 				.collect(Collectors.toList());
+		final Map<Character, Long> occurenciesByChar = this.word.chars()
+				.mapToObj(c -> (char) c)
+				.collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
 
 		int tempRank = this.word.length() - 1;
 		// the last char is always one.
@@ -52,7 +59,7 @@ public class RankOfAWord {
 					break;
 				}
 				sortedCharCount++;
-				this.rankInPermutations += this.factorial(tempRank);
+				this.rankInPermutations += this.factorial(tempRank) / occurenciesByChar.get(sortedChar);
 			}
 
 			sortedChars.remove(sortedCharCount);
