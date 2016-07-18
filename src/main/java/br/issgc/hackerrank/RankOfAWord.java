@@ -42,6 +42,7 @@ public class RankOfAWord {
 		// sort the characters for eval the permutations
 		final List<Character> sortedChars = this.word.chars()
 				.mapToObj(c -> (char) c)
+				.distinct()
 				.sorted()
 				.collect(Collectors.toList());
 		final Map<Character, Long> occurenciesByChar = this.word.chars()
@@ -52,16 +53,23 @@ public class RankOfAWord {
 		// the last char is always one.
 		for (int charAt = 0; charAt < this.word.length() - 1; charAt++) {
 
+			final char evaluatedChar = this.word.charAt(charAt);
+
+			if (!sortedChars.contains(evaluatedChar)) {
+				continue;
+			}
+
 			int sortedCharCount = 0;
 			for (final Character sortedChar : sortedChars) {
 
-				if (this.word.charAt(charAt) == sortedChar) {
+				if (evaluatedChar == sortedChar) {
 					break;
 				}
 				sortedCharCount++;
-				this.rankInPermutations += this.factorial(tempRank) / occurenciesByChar.get(sortedChar);
+				this.rankInPermutations += this.factorial(tempRank) / occurenciesByChar.get(evaluatedChar);
 			}
 
+			this.rankInPermutations /= occurenciesByChar.get(evaluatedChar);
 			sortedChars.remove(sortedCharCount);
 			tempRank--;
 		}
