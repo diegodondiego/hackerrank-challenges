@@ -3,11 +3,10 @@
  */
 package br.issgc.tests.pangram;
 
-import static org.junit.Assert.assertTrue;
-
-import org.junit.Test;
-
 import br.issgc.hackerrank.PangramEvaluator;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
  * Tests donwloaded from hackerrank

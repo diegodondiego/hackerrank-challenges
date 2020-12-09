@@ -1,10 +1,9 @@
 package br.issgc.tests.rankofaword;
 
-import static org.junit.Assert.assertEquals;
-
-import org.junit.Test;
-
 import br.issgc.hackerrank.RankOfAWord;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  * in this tests we are going to test this below:
@@ -32,7 +31,7 @@ public class TestCasesFromHackerRank {
 	 */
 	@Test
 	public void vamsi() {
-		assertEquals(new Long(100), new RankOfAWord("vamsi").getRankInPermutations());
+		assertEquals(Long.valueOf(100), new RankOfAWord("vamsi").getRankInPermutations());
 	}
 
 	/**
@@ -40,7 +39,7 @@ public class TestCasesFromHackerRank {
 	 */
 	@Test
 	public void sam() {
-		assertEquals(new Long(5), new RankOfAWord("sam").getRankInPermutations());
+		assertEquals(Long.valueOf(5), new RankOfAWord("sam").getRankInPermutations());
 	}
 
 	/**
@@ -48,7 +47,7 @@ public class TestCasesFromHackerRank {
 	 */
 	@Test
 	public void bright() {
-		assertEquals(new Long(85), new RankOfAWord("bright").getRankInPermutations());
+		assertEquals(Long.valueOf(85), new RankOfAWord("bright").getRankInPermutations());
 	}
 
 	/**
@@ -56,7 +55,7 @@ public class TestCasesFromHackerRank {
 	 */
 	@Test
 	public void computer() {
-		assertEquals(new Long(1607), new RankOfAWord("computer").getRankInPermutations());
+		assertEquals(Long.valueOf(1607), new RankOfAWord("computer").getRankInPermutations());
 	}
 
 	/**
@@ -64,7 +63,7 @@ public class TestCasesFromHackerRank {
 	 */
 	@Test
 	public void dcba() {
-		assertEquals(new Long(24), new RankOfAWord("dcba").getRankInPermutations());
+		assertEquals(Long.valueOf(24), new RankOfAWord("dcba").getRankInPermutations());
 	}
 
 	/**
@@ -72,7 +71,7 @@ public class TestCasesFromHackerRank {
 	 */
 	@Test
 	public void happy() {
-		assertEquals(new Long(13), new RankOfAWord("happy").getRankInPermutations());
+		assertEquals(Long.valueOf(13), new RankOfAWord("happy").getRankInPermutations());
 	}
 
 	/**
@@ -80,7 +79,7 @@ public class TestCasesFromHackerRank {
 	 */
 	@Test
 	public void aaam() {
-		assertEquals(new Long(1), new RankOfAWord("aaam").getRankInPermutations());
+		assertEquals(Long.valueOf(1), new RankOfAWord("aaam").getRankInPermutations());
 	}
 
 	/**
@@ -88,7 +87,7 @@ public class TestCasesFromHackerRank {
 	 */
 	@Test
 	public void aadhaar() {
-		assertEquals(new Long(31), new RankOfAWord("aadhaar").getRankInPermutations());
+		assertEquals(Long.valueOf(31), new RankOfAWord("aadhaar").getRankInPermutations());
 	}
 
 	/**
@@ -96,7 +95,7 @@ public class TestCasesFromHackerRank {
 	 */
 	@Test
 	public void abcdabcd() {
-		assertEquals(new Long(187), new RankOfAWord("abcdabcd").getRankInPermutations());
+		assertEquals(Long.valueOf(187), new RankOfAWord("abcdabcd").getRankInPermutations());
 	}
 
 }
